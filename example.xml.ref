@@ -1,0 +1,64 @@
+
+<BIT_STRING>bbbb
+</BIT_STRING>
+
+<Date>
+    <year>1996
+    </year>
+    <month>1
+    </month>
+    <day>1
+    </day>
+</Date>
+
+<Day>1
+</Day>
+
+<Month>1
+</Month>
+
+<OBJECT_IDENTIFIER>bbbb
+</OBJECT_IDENTIFIER>
+
+<PseudoCONTROLMessage>
+    <id>
+        <!--ComplexType--/>
+    </id>
+    <address>bbbbbbbbbbbbbbbbbbbbbbbb
+    </address>
+    <oid>bbbb
+    </oid>
+    <embeddedMessage>bbbb
+    </embeddedMessage>
+</PseudoCONTROLMessage>
+
+<Reason>
+    <undefined/>
+</Reason>
+
+<Size>
+    <date>
+        <year>1996
+        </year>
+        <month>1
+        </month>
+        <day>1
+        </day>
+    </date>
+</Size>
+
+<Size2>
+</Size2>
+
+<TypeAddress>bbbbbbbbbbbbbbbbbbbbbbbb
+</TypeAddress>
+
+<TypeChoice>
+    <upElementIDs>bbbb
+    </upElementIDs>
+</TypeChoice>
+
+<!--ComplexType--/>
+
+<Year>1996
+</Year>

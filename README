@@ -1,0 +1,19 @@
+
+Overview:
+    pyXsd2Xml generates XML samples for all root types of an XSD schema file.
+
+
+Usage:
+    python pyXsd2Xml.py --xsd-file=example.xsd
+    
+
+Test:
+    make test
+
+
+
+TODO:
+- inline types
+- minLength, maxLength
+- <!--ComplexType--/> (complexContent)
+- manage namespaces

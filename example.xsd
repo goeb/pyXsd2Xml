@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xsd:complexType name="TypeComplexContent" mixed="true">
+    <xsd:complexContent>
+      <xsd:extension base="xsd:string"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="BIT_STRING">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="(0|1)*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TypeAddress">
+    <xsd:restriction base="BIT_STRING">
+      <xsd:length value="24"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OBJECT_IDENTIFIER">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="([a-z]([a-z]|[A-Z]|[0-9]|-)+\([0-9]+\)|[0-9]+)(\.([a-z]([a-z]|[A-Z]|[0-9]|-)+\([0-9]+\)|[0-9]+))+"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="PseudoCONTROLMessage">
+    <xsd:sequence>
+      <xsd:element name="id" type="TypeComplexContent"/>
+      <xsd:element name="address" type="TypeAddress"/>
+      <xsd:element name="oid" type="OBJECT_IDENTIFIER"/>
+      <xsd:element name="embeddedMessage" type="BIT_STRING" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="Year">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1996"/>
+      <xsd:maxInclusive value="2095"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Month">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1"/>
+      <xsd:maxInclusive value="12"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="Day">
+    <xsd:restriction base="xsd:integer">
+      <xsd:minInclusive value="1"/>
+      <xsd:maxInclusive value="31"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="Date">
+    <xsd:sequence>
+      <xsd:element name="year" type="Year"/>
+      <xsd:element name="month" type="Month"/>
+      <xsd:element name="day" type="Day"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TypeChoice">
+    <xsd:choice>
+      <xsd:element name="upElementIDs" type="BIT_STRING"/>
+      <xsd:element name="downElementIDs" type="BIT_STRING"/>
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="ENUMERATED"/>
+  <xsd:complexType name="Reason">
+    <xsd:choice>
+      <xsd:element name="undefined" type="ENUMERATED"/>
+      <xsd:element name="out-of-range" type="ENUMERATED"/>
+      <xsd:element name="invalid" type="ENUMERATED"/>
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="NULL"/>
+  <xsd:complexType name="Size">
+    <xsd:choice>
+      <xsd:element name="date" type="Date"/>
+      <xsd:element name="blockSize">
+        <xsd:complexType>
+          <xsd:sequence minOccurs="2" maxOccurs="2">
+            <xsd:choice>
+              <xsd:element name="sizeFeet" type="xsd:integer"/>
+              <xsd:element name="sizeMeters" type="xsd:integer"/>
+            </xsd:choice>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:complexType name="Size2">
+    <xsd:sequence minOccurs="2" maxOccurs="2">
+      <xsd:choice>
+        <xsd:element name="date" type="Date"/>
+        <xsd:element name="blockSize">
+          <xsd:complexType>
+            <xsd:sequence minOccurs="2" maxOccurs="2">
+              <xsd:choice>
+                <xsd:element name="sizeFeet" type="xsd:integer"/>
+                <xsd:element name="sizeMeters" type="xsd:integer"/>
+              </xsd:choice>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="PseudoCONTROLMessage" type="PseudoCONTROLMessage"/>
+  <xsd:element name="Size" type="Size"/>
+</xsd:schema>
